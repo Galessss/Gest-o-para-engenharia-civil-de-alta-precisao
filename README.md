@@ -37,6 +37,13 @@ Interface responsiva (desktop e mobile)
 
 Uptime ≥ 99,5%
 
+📂 Estrutura do Projeto
+/docs         → Documentação e manuais
+/src          → Código-fonte do sistema
+/tests        → Testes automatizados
+/config       → Arquivos de configuração
+/public       → Frontend / Interface
+
 🛠️ Tecnologias Sugeridas
 
 Backend: Node.js, Python (FastAPI/Django)
