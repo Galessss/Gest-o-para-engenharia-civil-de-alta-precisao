@@ -1,5 +1,4 @@
-📘 README – Sistema de Gestão em Engenharia Civil
-📌 Sobre o Projeto
+📘 README – Sistema de Gestão em Engenharia Civil 📌 Sobre o Projeto
 
 Este sistema tem como objetivo oferecer uma plataforma de gestão integrada para obras e projetos de engenharia civil, garantindo alta precisão, eficiência e controle total em todas as etapas.
 
@@ -37,12 +36,7 @@ Interface responsiva (desktop e mobile)
 
 Uptime ≥ 99,5%
 
-📂 Estrutura do Projeto
-/docs         → Documentação e manuais
-/src          → Código-fonte do sistema
-/tests        → Testes automatizados
-/config       → Arquivos de configuração
-/public       → Frontend / Interface
+📂 Estrutura do Projeto /docs → Documentação e manuais /src → Código-fonte do sistema /tests → Testes automatizados /config → Arquivos de configuração /public → Frontend / Interface
 
 🛠️ Tecnologias Sugeridas
 
