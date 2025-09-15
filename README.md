@@ -46,6 +46,8 @@ Uptime ≥ 99,5%
 
 🛠️ Tecnologias Sugeridas
 
+Mobile: Ionic
+
 Backend: Node.js, Python (FastAPI/Django)
 
 Frontend: React + TailwindCSS
