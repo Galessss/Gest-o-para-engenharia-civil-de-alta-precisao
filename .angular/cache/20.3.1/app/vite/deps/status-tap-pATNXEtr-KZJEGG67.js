@@ -1,0 +1,51 @@
+import {
+  findClosestIonContent,
+  scrollToTop
+} from "./chunk-OHKMCRTQ.js";
+import {
+  componentOnReady
+} from "./chunk-B346ZSWA.js";
+import {
+  readTask,
+  writeTask
+} from "./chunk-RVN4HUSD.js";
+import {
+  __async,
+  __name
+} from "./chunk-EXLSCMNP.js";
+
+// node_modules/@ionic/core/dist/esm/status-tap-pATNXEtr.js
+var startStatusTap = /* @__PURE__ */ __name(() => {
+  const win = window;
+  win.addEventListener("statusTap", () => {
+    readTask(() => {
+      const width = win.innerWidth;
+      const height = win.innerHeight;
+      const el = document.elementFromPoint(width / 2, height / 2);
+      if (!el) {
+        return;
+      }
+      const contentEl = findClosestIonContent(el);
+      if (contentEl) {
+        new Promise((resolve) => componentOnReady(contentEl, resolve)).then(() => {
+          writeTask(() => __async(null, null, function* () {
+            contentEl.style.setProperty("--overflow", "hidden");
+            yield scrollToTop(contentEl, 300);
+            contentEl.style.removeProperty("--overflow");
+          }));
+        });
+      }
+    });
+  });
+}, "startStatusTap");
+export {
+  startStatusTap
+};
+/*! Bundled license information:
+
+@ionic/core/dist/esm/status-tap-pATNXEtr.js:
+  (*!
+   * (C) Ionic http://ionicframework.com - MIT License
+   *)
+*/
+//# sourceMappingURL=status-tap-pATNXEtr-KZJEGG67.js.map
