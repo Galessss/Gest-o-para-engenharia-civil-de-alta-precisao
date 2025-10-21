@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login / Cadastro</title>
+    <title>GestSolucion</title>
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
 </head>
 <body>
@@ -30,24 +30,16 @@
         </div>
 
         <div class="form-container sign-in">
-            <form action="{% url 'login' %}" method="post">
-                <h1>Entrar</h1>
-                {% csrf_token %}
-
-                {% if login_form.non_field_errors %}
-                    <div style="color: red; font-size: 0.8em;">
-                        {% for error in login_form.non_field_errors %}
-                            <p>{{ error }}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                
-                {{ login_form.as_p }}
-                <a href="#">Esqueceu a sua senha?</a>
-                <button type="submit">Entrar</button>
-            </form>
-        </div>
-
+    <form action="{% url 'login' %}" method="post">
+        <h1>Entrar</h1>
+        {% csrf_token %}
+        
+        {{ login_form.as_p }}
+        
+        <a href="#">Esqueceu a sua senha?</a>
+        <button type="submit">Entrar</button>
+    </form>
+</div>
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
