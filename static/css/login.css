@@ -15,6 +15,25 @@ body {
     background: #23242a;
 }
 
+
+
+
+.form-container .errorlist {
+  list-style-type: none !important; /* FORÇA a remoção do ponto */
+  padding: 0 !important;           /* FORÇA a remoção do padding da lista */
+  margin: 0 0 10px 0;
+  color: #ff4b2b;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* Garante que o item da lista também não tenha estilo */
+.form-container .errorlist li {
+  list-style: none !important;
+  padding: 0;
+  margin: 0;
+}
 .container {
     background-color: #1c1c1c;
     border-radius: 8px;
@@ -38,7 +57,7 @@ body {
     color: #333;
     font-size: 14px;
     text-decoration: none;
-    margin: 15px 0;
+    margin: 12px 0;
 }
 
 .container button {
@@ -84,7 +103,7 @@ body {
     background-color: #333;
     border: none;
     padding: 12px 15px;
-    margin: 8px 0;
+    margin: 6px 0;
     width: 100%;
     border-radius: 5px;
     color: #fff;
