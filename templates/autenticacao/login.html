@@ -9,11 +9,21 @@
 </head>
 <body>
 
-    <div class="container" id="container">
+    <div class="container {% if register_form.errors %}active{% endif %}" id="container">
+        
         <div class="form-container sign-up">
             <form action="{% url 'register' %}" method="post">
                 <h1>Criar Conta</h1>
                 {% csrf_token %}
+                
+                {% if register_form.non_field_errors %}
+                    <div style="color: red; font-size: 0.8em;">
+                        {% for error in register_form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
                 {{ register_form.as_p }}
                 <button type="submit">Cadastrar</button>
             </form>
@@ -23,6 +33,15 @@
             <form action="{% url 'login' %}" method="post">
                 <h1>Entrar</h1>
                 {% csrf_token %}
+
+                {% if login_form.non_field_errors %}
+                    <div style="color: red; font-size: 0.8em;">
+                        {% for error in login_form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
                 {{ login_form.as_p }}
                 <a href="#">Esqueceu a sua senha?</a>
                 <button type="submit">Entrar</button>
@@ -39,12 +58,11 @@
                 <div class="toggle-panel toggle-right">
                     <h1>Olá, Amigo!</h1>
                     <p>Registe-se com os seus dados pessoais para usar todos os recursos do site</p>
-                    <button class="hidden" id="register">Cadastrar</se>
+                    <button class="hidden" id="register">Cadastrar</button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="{% static 'js/script_login.js' %}"></script>
+    </div> <script src="{% static 'js/script_login.js' %}"></script>
 </body>
 </html>
