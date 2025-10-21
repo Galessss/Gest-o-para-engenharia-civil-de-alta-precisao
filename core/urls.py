@@ -1,26 +1,20 @@
-# core/urls.py
+# Em core/urls.py
 
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from . import forms
+from .home_views import home_view, logout_view 
 from . import views
 
 urlpatterns = [
-    # 1. A URL que MOSTRA a página de login/cadastro
-    # Aponta para a sua view 'login_signup_view' em core/views.py
+    
     path('login/', views.login_signup_view, name='login_signup'),
-
-    # 2. A URL que PROCESSA os dados do formulário de login
-    # Usa a view pronta do Django, mas aponta para o nosso template customizado
-    path('login_process/', auth_views.LoginView.as_view(
-        template_name='autenticacao/login.html',
-        redirect_authenticated_user=True
-    ), name='login'),
-
-    # 3. A URL que PROCESSA o registro de um novo usuário
-    # Aponta para a view 'register' que criamos em core/views.py
+    
+    path('', home_view, name='home'),
+    
     path('register/', views.register, name='register'),
-
-    # 4. A URL para fazer logout
-    # Usa a view pronta do Django
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
+    path('login_process/', views.login_process_view, name='login'),
+    
+    path('logout/', logout_view, name='logout'),
 ]
