@@ -15,12 +15,9 @@ body {
     background: #23242a;
 }
 
-
-
-
 .form-container .errorlist {
-  list-style-type: none !important; /* FORÇA a remoção do ponto */
-  padding: 0 !important;           /* FORÇA a remoção do padding da lista */
+  list-style-type: none !important;
+  padding: 0 !important;
   margin: 0 0 10px 0;
   color: #ff4b2b;
   font-size: 0.8em;
@@ -28,12 +25,12 @@ body {
   text-align: left;
 }
 
-/* Garante que o item da lista também não tenha estilo */
 .form-container .errorlist li {
   list-style: none !important;
   padding: 0;
   margin: 0;
 }
+
 .container {
     background-color: #1c1c1c;
     border-radius: 8px;
@@ -54,7 +51,7 @@ body {
 }
 
 .container a {
-    color: #333;
+    color: #fff; /* Alterado de #333 para branco */
     font-size: 14px;
     text-decoration: none;
     margin: 12px 0;
@@ -87,17 +84,20 @@ body {
     border-color: #ffffff;
 }
 
+/* --- Correção Desktop: Alinha forms ao topo --- */
 .container form {
     background-color: #28292d;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Alinha ao topo */
     flex-direction: column;
-    padding: 0 50px;
-    height: 100%;
+    padding: 40px 50px;
+    height: auto;
+    min-height: 100%;
     text-align: center;
     color: #fff;
 }
+
 
 .container input {
     background-color: #333;
@@ -109,12 +109,15 @@ body {
     color: #fff;
 }
 
+/* --- Correção Desktop: Adiciona rolagem interna --- */
 .form-container {
     position: absolute;
     top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
+    overflow-y: auto; /* Adiciona barra de rolagem se o form for muito grande */
 }
+
 
 .sign-in {
     left: 0;
@@ -212,4 +215,120 @@ body {
 
 .container.active .toggle-right {
     transform: translateX(200%);
+}
+
+
+/* =========================================
+--- CÓDIGO RESPONSIVO (MOBILE) ---
+=========================================
+*/
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    /* --- CORREÇÃO: Posição dos forms --- */
+    .form-container {
+        width: 100%;
+        height: 50%;
+        position: absolute;
+        /* 'top' será definido por .sign-in e .sign-up */
+        transition: all 0.6s ease-in-out;
+        overflow-y: auto; 
+    }
+    
+    .container form {
+        padding: 40px 30px;
+    }
+
+    .sign-in {
+        top: 0; /* Começa na metade de CIMA */
+        z-index: 2;
+        left: 0;
+        width: 100%;
+        transform: translateY(0);
+    }
+    .sign-up {
+        top: 50%; /* CORREÇÃO: Começa na metade de BAIXO */
+        z-index: 1;
+        opacity: 0;
+        left: 0;
+        width: 100%;
+        transform: translateY(0);
+    }
+    /* --- FIM DA CORREÇÃO --- */
+
+
+    .toggle-container {
+        width: 100%;
+        height: 50%;
+        left: 0;
+        top: 50%; /* Começa na metade de BAIXO */
+        z-index: 100;
+        transition: all 0.6s ease-in-out;
+    }
+
+    .toggle {
+        width: 100%;
+        height: 200%;
+        left: 0;
+        transform: translateY(-50%);
+        background: linear-gradient(to bottom, #ff416c, #ff4b2b);
+    }
+
+    .toggle-panel {
+        width: 100%;
+        height: 50%;
+        padding: 0 30px;
+        position: absolute;
+        left: 0;
+        transform: translateX(0); 
+    }
+    .toggle-left {
+        top: 0;
+        transform: translateY(-100%);
+    }
+    .toggle-right {
+        top: 50%;
+        right: auto;
+        left: 0;
+        transform: translateY(0);
+    }
+
+
+    /* --- ANIMAÇÕES NO MOBILE (COM CORREÇÃO) --- */
+
+    .container.active .sign-in {
+        transform: translateY(-100%); /* Desliza o form "Entrar" para CIMA */
+        opacity: 0;
+        z-index: 1;
+        animation: none;
+    }
+
+    .container.active .sign-up {
+        transform: translateY(0); /* CORREÇÃO: Mantém ele em 'top: 50%' */
+        opacity: 1;
+        z-index: 5;
+        animation: none;
+    }
+
+    .container.active .toggle-container {
+        transform: translateY(-100%); /* Desliza o painel "Olá Amigo" para CIMA */
+    }
+
+    .container.active .toggle {
+        transform: translateY(0);
+    }
+    
+    .container.active .toggle-left {
+        transform: translateY(0);
+    }
+    .container.active .toggle-right {
+        transform: translateY(200%);
+    }
 }
