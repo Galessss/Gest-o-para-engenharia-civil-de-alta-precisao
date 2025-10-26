@@ -1,0 +1,253 @@
+/* -------------------------------------------------------------------------- */
+/* Variáveis de Tema (Dark Mode)                       */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  /* Cores */
+  --color-bg-page: #121212;      /* Fundo da página principal (inferido) */
+  --color-bg-sidebar: #1a1a1a; /* Fundo da barra lateral */
+  --color-bg-input: #252525;    /* Fundo dos inputs (busca, select) */
+  --color-bg-item-hover: #2a2a2a; /* Fundo do item ao passar o mouse */
+  --color-bg-item-active: #333; /* Fundo do item ativo */
+
+  --color-border: #333;         /* Cor da borda sutil */
+  --color-border-input: #444;   /* Borda dos inputs */
+  
+  --color-text-primary: #f0f0f0;  /* Texto principal (links, corpo) */
+  --color-text-secondary: #ccc;   /* Texto de links não-ativos */
+  --color-text-muted: #888;       /* Texto "muted" (títulos de grupo, placeholder) */
+  --color-text-active: #ffffff;   /* Texto do item ativo */
+
+  --color-scrollbar-thumb: #444;  /* Cor da barra de rolagem */
+  --color-scrollbar-thumb-hover: #555;
+
+  /* Tipografia */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 
+                      "Helvetica Neue", Arial, sans-serif;
+  --font-size-sm: 0.9rem;  /* 14.4px */
+  --font-size-xs: 0.75rem; /* 12px */
+
+  /* Outros */
+  --sidebar-width: 280px;
+  --border-radius: 6px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Estilos Globais (Contexto)                     */
+/* -------------------------------------------------------------------------- */
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
+  margin: 0;
+  display: flex; /* Layout simples com sidebar */
+}
+
+/* Adicione um 'margin-left' ao seu conteúdo principal
+  para dar espaço para a sidebar fixa.
+*/
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: 1.5rem;
+  width: 100%;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Sidebar Principal                           */
+/* -------------------------------------------------------------------------- */
+
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh; /* Altura total da tela */
+  position: fixed; /* Fixa na lateral */
+  top: 0;
+  left: 0;
+  
+  background-color: var(--color-bg-sidebar);
+  border-right: 1px solid var(--color-border);
+  
+  display: flex;
+  flex-direction: column; /* Empilha header, content e rail */
+}
+
+/* -------------------------------------------------------------------------- */
+/* Cabeçalho da Sidebar                          */
+/* -------------------------------------------------------------------------- */
+
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* --- Seletor de Versão (VersionSwitcher) --- */
+/* Estilizando o <select> que criei para parecer com o da imagem */
+.version-switcher {
+  margin-bottom: 0.75rem;
+}
+
+.version-switcher label {
+  /* Oculta o label, pois a imagem não o mostra */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.version-switcher select {
+  width: 100%;
+  background-color: var(--color-bg-input);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--border-radius);
+  padding: 0.5rem 0.75rem;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  
+  /* Remove a seta padrão */
+  appearance: none;
+  -webkit-appearance: none;
+  
+  /* Adiciona uma seta customizada (SVG embutido) */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1em;
+}
+
+/* --- Formulário de Busca (SearchForm) --- */
+.search-form {
+  position: relative; /* Contexto para o ícone */
+}
+
+.search-form input[type="search"] {
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 2.25rem; /* Espaço à esquerda para o ícone */
+  background-color: var(--color-bg-input);
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--border-radius);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  box-sizing: border-box; /* Garante que padding não afete a largura */
+}
+
+.search-form input[type="search"]::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Ícone de busca (SVG embutido) */
+.search-form::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3ccircle cx='11' cy='11' r='8'%3e%3c/circle%3e%3cline x1='21' y1='21' x2='16.65' y2='16.65'%3e%3c/line%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.7;
+  pointer-events: none; /* Não bloquear o clique no input */
+}
+
+/* Classe de acessibilidade que usei no HTML */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* Conteúdo da Sidebar                             */
+/* -------------------------------------------------------------------------- */
+
+.sidebar-content {
+  flex: 1; /* Ocupa todo o espaço vertical restante */
+  overflow-y: auto; /* Adiciona barra de rolagem SE necessário */
+  padding: 0.5rem 0.75rem; /* Espaçamento lateral alinhado com o header */
+}
+
+/* --- Estilização da Barra de Rolagem (Webkit) --- */
+.sidebar-content::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-content::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb);
+  border-radius: 10px;
+  border: 2px solid var(--color-bg-sidebar); /* Espaçamento em volta da barra */
+}
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-scrollbar-thumb-hover);
+}
+
+/* --- Estrutura da Navegação --- */
+.sidebar-content nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Espaçamento entre os grupos (Getting Started, Building App, etc.) */
+.sidebar-content nav > ul > li {
+  margin-bottom: 1.5rem;
+}
+
+/* Título do Grupo (<h3>) */
+.sidebar-content h3 {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 0.75rem; /* Alinhamento com os links */
+  margin: 0 0 0.5rem 0;
+}
+
+/* --- Itens de Menu (Links) --- */
+.sidebar-content a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--border-radius);
+  color: var(--color-text-secondary); /* Cor do link normal */
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Estado Hover (Mouse em cima) */
+.sidebar-content a:hover {
+  background-color: var(--color-bg-item-hover);
+  color: var(--color-text-primary);
+}
+
+/* Estado Ativo (Página atual) */
+.sidebar-content a.active,
+.sidebar-content a[aria-current="page"] {
+  background-color: var(--color-bg-item-active);
+  color: var(--color-text-active);
+  font-weight: 500;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Rail (Opcional)                            */
+/* -------------------------------------------------------------------------- */
+
+.sidebar-rail {
+  /* Seu código React tinha um <SidebarRail>, que não aparece na imagem. */
+  /* Poderia ser para ícones ou para a sidebar recolhida. */
+  padding: 1rem 0;
+  border-top: 1px solid var(--color-border);
+}

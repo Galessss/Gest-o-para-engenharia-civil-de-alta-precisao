@@ -1,12 +1,84 @@
+{% load static %}
+<aside class="sidebar">
 
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Página Inicial (Home)</title>
-</head>
-<body>
-    <h1>Bem-vindo à Página Inicial!</h1>
-    <p>Você está logado como: {{ user.username }}</p>
-    <a href="{% url 'logout' %}">Sair</a>
-</body>
-</html>
+  <header class="sidebar-header">
+    
+    <div class="version-switcher">
+      <label for="version-select">Versão:</label>
+      <select id="version-select" name="version">
+        <option value="1.0.1">1.0.1</option>
+        <option value="1.1.0-alpha">1.1.0-alpha</option>
+        <option value="2.0.0-beta1">2.0.0-beta1</option>
+      </select>
+    </div>
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <form role="search" class="search-form">
+      <label for="search-input" class="visually-hidden">Buscar na documentação</label>
+      <input type="search" id="search-input" placeholder="Buscar...">
+    </form>
+  </header>
+
+  <div class="sidebar-content">
+    
+    <nav aria-label="Navegação principal">
+      <ul>
+        
+        <li>
+          <h3>Getting Started</h3>
+          <ul>
+            <li><a href="#">Installation</a></li>
+            <li><a href="#">Project Structure</a></li>
+          </ul>
+        </li>
+        
+        <li>
+          <h3>Building Your Application</h3>
+          <ul>
+            <li><a href="#">Routing</a></li>
+            <li>
+              <a href="#" class="active" aria-current="page">Data Fetching</a>
+            </li>
+            <li><a href="#">Rendering</a></li>
+            <li><a href="#">Caching</a></li>
+            <li><a href="#">Styling</a></li>
+            <li><a href="#">Optimizing</a></li>
+            <li><a href="#">Configuring</a></li>
+            <li><a href="#">Testing</a></li>
+            <li><a href="#">Authentication</a></li>
+            <li><a href="#">Deploying</a></li>
+            <li><a href="#">Upgrading</a></li>
+            <li><a href="#">Examples</a></li>
+          </ul>
+        </li>
+        
+        <li>
+          <h3>API Reference</h3>
+          <ul>
+            <li><a href="#">Components</a></li>
+            <li><a href="#">File Conventions</a></li>
+            <li><a href="#">Functions</a></li>
+            <li><a href="#">next.config.js Options</a></li>
+            <li><a href="#">CLI</a></li>
+            <li><a href="#">Edge Runtime</a></li>
+          </ul>
+        </li>
+        
+        <li>
+          <h3>Architecture</h3>
+          <ul>
+            <li><a href="#">Accessibility</a></li>
+            <li><a href="#">Fast Refresh</a></li>
+            <li><a href="#">Next.js Compiler</a></li>
+            <li><a href="#">Supported Browsers</a></li>
+            <li><a href="#">Turbopack</a></li>
+          </ul>
+        </li>
+        
+      </ul>
+    </nav>
+  </div>
+
+  <div class="sidebar-rail">
+    </div>
+
+</aside>
