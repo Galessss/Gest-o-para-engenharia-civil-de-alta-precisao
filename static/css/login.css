@@ -36,9 +36,9 @@ body {
     border-radius: 8px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     position: relative;
-    width: 768px;
+    width: 868px;
     max-width: 100%;
-    min-height: 480px;
+    min-height: 580px;
     overflow: hidden;
 }
 
@@ -89,7 +89,7 @@ body {
     background-color: #28292d;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Alinha ao topo */
+    justify-content: center; /* Alinha ao topo */
     flex-direction: column;
     padding: 40px 50px;
     height: auto;
