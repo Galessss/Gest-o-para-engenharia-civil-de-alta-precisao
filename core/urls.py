@@ -16,5 +16,7 @@ urlpatterns = [
     
     path('login_process/', views.login_process_view, name='login'),
     
+    path('salvar-localizacao/', views.salvar_localizacao, name='salvar_localizacao'),
+    
     path('logout/', logout_view, name='logout'),
 ]

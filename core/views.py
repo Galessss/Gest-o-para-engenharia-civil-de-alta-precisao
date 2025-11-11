@@ -70,3 +70,56 @@ def login_process_view(request):
     
     # Se alguém tentar acessar /login_process/ via GET, mande para a pág. de login
     return redirect('login_signup')
+
+# No views.py da sua app
+import json
+from django.http import JsonResponse, HttpResponseBadRequest
+from django.views.decorators.http import require_POST
+# from django.views.decorators.csrf import csrf_protect # O 'fetch' já envia o token, mas é uma boa prática
+
+# @require_POST garante que esta view só aceita o método POST
+@require_POST
+def salvar_localizacao(request):
+    """
+    Recebe as coordenadas de latitude e longitude via POST (JSON)
+    e as salva na sessão do usuário.
+    """
+    
+    # Tenta carregar os dados do corpo da requisição
+    try:
+        # request.body contém o JSON enviado pelo 'fetch'
+        data = json.loads(request.body)
+    except json.JSONDecodeError:
+        return HttpResponseBadRequest('JSON inválido.')
+
+    # Pega a latitude e longitude de dentro dos dados
+    latitude = data.get('latitude')
+    longitude = data.get('longitude')
+
+    # Validação simples
+    if latitude is None or longitude is None:
+        return HttpResponseBadRequest('Faltando "latitude" ou "longitude".')
+
+    # --- SUCESSO! O que fazer com os dados? ---
+    
+    # 1. (Simples) Salvar na sessão do usuário
+    #    Isso é ótimo para usar em outras páginas na mesma visita.
+    request.session['user_location'] = {
+        'latitude': latitude,
+        'longitude': longitude
+    }
+    
+    # 2. (Avançado) Salvar no banco de dados (ex: no perfil do usuário)
+    # if request.user.is_authenticated:
+    #     request.user.profile.latitude = latitude
+    #     request.user.profile.longitude = longitude
+    #     request.user.profile.save()
+
+    # 3. (Debug) Apenas imprimir no console do Django
+    print(f'Localização recebida: Lat={latitude}, Lon={longitude}')
+    
+    # --- Fim ---
+
+    # Envia uma resposta de sucesso de volta para o JavaScript
+    # O JavaScript vai receber isso no '.then(data => ...)'
+    return JsonResponse({'status': 'sucesso', 'mensagem': 'Localização recebida!'})
