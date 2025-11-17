@@ -152,3 +152,18 @@ TEMPLATES = [
         },
     },
 ]
+#tempo de sessão expira em 5 minutos de inatividade
+
+SESSION_COOKIE_AGE = 300  
+# renova a sessão a cada requisição
+SESSION_SAVE_EVERY_REQUEST = False  
+# expira a sessão ao fechar o navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+
+# Segurança dos cookies
+SESSION_COOKIE_SECURE = False  
+
+SESSION_COOKIE_HTTPONLY = True
+
+CSRF_COOKIE_HTTPONLY = True
